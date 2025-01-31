@@ -1,17 +1,20 @@
 package dev.capp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 @Entity
+/*@Table(name = "trains")*/
 public class Train {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /*@Column(name = "train_company", nullable = false, length = 100)*/
     private String trainCompany;
+
+    /*@Column(name = "train_code", nullable = false, length = 50)*/
     private String trainCode;
 
     public Train() {}
@@ -21,12 +24,12 @@ public class Train {
         this.trainCompany = trainCompany;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTrainCode() {
@@ -52,4 +55,17 @@ public class Train {
                 ", trainCode='" + trainCode + '\'' +
                 '}';
     }
+
+    /*@Override
+    public boolean equals(Object objectToCompare) {
+        if (this == objectToCompare) return true;
+        if (objectToCompare == null || getClass() != objectToCompare.getClass()) return false;
+        Train train = (Train) objectToCompare;
+        return Objects.equals(id, train.id) && Objects.equals(trainCode, train.trainCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, trainCode);
+    }*/
 }
